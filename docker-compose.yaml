@@ -20,7 +20,6 @@ services:
     image: 'mariadb'
     restart: always
     environment:
-      MYSQL_DATABASE: data
       MYSQL_ROOT_PASSWORD: password
 
 

@@ -14,4 +14,5 @@ RUN wget https://getcomposer.org/download/2.0.9/composer.phar \
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
-WORKDIR /app
+WORKDIR /app/
+
