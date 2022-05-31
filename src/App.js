@@ -4,6 +4,34 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import PostList from './PostList';
 import CreatePost from './CreatePost';
+import axios from 'axios';
+
+
+const AxiosInstance = axios.create({baseUrl: 'http://8000/'});
+
+axios.interceptors.response.use(
+  req => {console.log('Réponse intercepté')
+  return req
+  },
+
+  error => console.log(error)
+)
+
+const signIn = (email, password) => {
+
+          return AxiosInstance.get('api/users', 
+          {
+            withCredentials: true,
+            auth: {
+              username: email,
+              password: password
+            }
+          }
+        )
+          .then(res => res.data)
+          .catch(error => 'login error')
+}
+
 
 function App() {
   return (
@@ -27,6 +55,7 @@ function App() {
       <SignUp></SignUp>
       <CreatePost></CreatePost>
       <PostList></PostList>
+     
     </div>
   );
 }
