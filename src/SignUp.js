@@ -1,9 +1,9 @@
 import './App.css';
 
-function SignIn() {
+function SignUp() {
   return (
     <div className="sign-form">
-      <p>Please Log In</p>
+      <p>Please Register</p>
       <form action="" method="get">
           <div>
             <label for="email">Enter your email :</label>
@@ -13,11 +13,11 @@ function SignIn() {
             <label for="password">Enter your password :</label>
             <input type="password" name="password" id="password" required></input>
           </div>
-          <input type="submit" value="Log In"></input>
-          <a href="">Register instead ?</a>
+          <input type="submit" value="Register"></input>
+          <a href="">Log In instead ?</a>
       </form>
     </div>
   );
 }
 
-export default SignIn;
+export default SignUp;

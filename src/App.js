@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import SignIn from './SignIn';
+import SignUp from './SignUp';
+import PostList from './PostList';
+import CreatePost from './CreatePost';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
       </header>
 
       <SignIn></SignIn>
+      <SignUp></SignUp>
+      <CreatePost></CreatePost>
+      <PostList></PostList>
     </div>
   );
 }
