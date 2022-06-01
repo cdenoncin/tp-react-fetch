@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# FRONT
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -39,28 +39,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
 ### Deployment
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
@@ -68,3 +46,82 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# BACK
+
+## First run
+At first run you must :
+- Start docker : `docker-compose up -d`
+- Go to the symfony container : `docker-compose exec symfony bash`
+  - Install the vendors : `composer install`
+  - Run the migrations : `symfony console doctrine:migrations:migrate`
+  - Run the fixtures : `symfony console doctrine:fixtures:load`
+  - Create the keys for the jwt : `symfony console lexik:jwt:generate-keypair`
+
+## Next run
+You just have to run `docker-compose up -d`
+
+## Dev url
+Your application run at `http://localhost:8000`
+Phpmyadmin run at : `http://localhost:8080`
+
+## Api
+You must set the header `Accept : application/json` in all the requests !
+Base url : `http://localhost:8000/api/`
+
+### Routes : 
+#### Public
+**Login : `/login`**
+                          
+Method : POST  
+Body : 
+```
+{
+  "username": "admin@admin.com",
+  "password": "password"
+}
+```
+Headers : `Content-Type : application/json`  
+
+**Register : `/register`**
+                             
+Method : POST  
+Body :
+```
+{
+  "username" : "username",
+  "email" : "email@email.com",
+  "password" : "password"	
+}
+```
+Headers :
+`Content-Type : application/json`
+
+#### Protected
+
+**List all posts : `/posts`**
+
+Method : GET
+
+**Create a post : `/posts`**   
+                                
+Method : POST       
+Body :                             
+```                                
+{
+  "title": "Hello world",
+  "content": "Lorem ipsum sit dolores"
+}
+
+```                                
+Headers :                          
+`Content-Type : application/json`  
+               
+**Get a post : `/posts/{id}`**                
+                                            
+Method : GET   
+
+**Delete a post : `/posts/{id}`**    
+                                  
+Method : DELETE                      
