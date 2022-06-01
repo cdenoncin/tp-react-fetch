@@ -1,23 +1,17 @@
 import './App.css';
+import CreateForm from './components/CreateForm';
 
 function SignIn() {
-  return (
-    <div className="sign-form">
-      <p>Please Log In</p>
-      <form action="" method="get">
-          <div>
-            <label for="email">Enter your email :</label>
-            <input type="email" name="email" id="email" required></input>
-          </div>
-          <div>
-            <label for="password">Enter your password :</label>
-            <input type="password" name="password" id="password" required></input>
-          </div>
-          <input type="submit" value="Log In"></input>
-          <a href="">Register instead ?</a>
-      </form>
-    </div>
-  );
+    return (
+        <CreateForm title="Sign In" submit="login" link="Register instead ?">
+            <div className="app-form-group">
+                <input className="app-form-control" placeholder="USERNAME"/>
+            </div>
+            <div className="app-form-group">
+                <input className="app-form-control" type="password" placeholder="PASSWORD"/>
+            </div>
+        </CreateForm>
+    );
 }
 
 export default SignIn;

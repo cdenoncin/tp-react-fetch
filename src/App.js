@@ -1,63 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import PostList from './PostList';
-import CreatePost from './CreatePost';
-import axios from 'axios';
+import React from 'react';
 
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            signUp: false,
+        };
+        this.toggle = this.toggle.bind(this);
+        this.showSignUp = this.showSignUp.bind(this);
+        this.hideSignUp = this.hideSignUp.bind(this);
+    }
 
-const AxiosInstance = axios.create({baseUrl: 'http://8000/'});
+    toggle() {
+        this.setState({signUp: !this.state.signUp});
+    }
 
-axios.interceptors.response.use(
-  req => {console.log('Réponse intercepté')
-  return req
-  },
+    showSignUp() {
+        this.setState({signUp: true});
+    }
 
-  error => console.log(error)
-)
+    hideSignUp(){
+        this.setState({signUp : false});
+    }
 
-const signIn = (email, password) => {
+    render() {
+        const show = (this.state.signUp) ? 'show' : '';
 
-          return AxiosInstance.get('api/users', 
-          {
-            withCredentials: true,
-            auth: {
-              username: email,
-              password: password
-            }
-          }
-        )
-          .then(res => res.data)
-          .catch(error => 'login error')
-}
+        return (
+            <div className="App">
+                <nav>
+                    <h1>Website</h1>
+                    <div className="nav-buttons">
+                        <button onClick={this.showSignUp} className={show ? 'active' : ''}>Already an account?</button>
+                        <button onClick={this.hideSignUp} className={show ? '' : 'active'}>Register Instead?</button>
+                    </div>
 
+                </nav>
+                <div className="d-flex">
+                    <section className={show ? 'd-flex' : 'd-none'}>
+                        <SignIn/>
+                    </section>
+                    <section className={show ? 'd-none' : 'd-flex'}>
+                        <SignUp/>
+                    </section>
+                </div>
+            </div>
+        );
+    }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-      <SignIn></SignIn>
-      <SignUp></SignUp>
-      <CreatePost></CreatePost>
-      <PostList></PostList>
-     
-    </div>
-  );
 }
 
 export default App;
