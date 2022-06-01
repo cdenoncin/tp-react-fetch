@@ -23,7 +23,7 @@ class PostController extends AbstractController
         return $this->json($serializer->serialize($repository->findAll(), 'json', ['groups' => ['posts']]));
     }
 
-    #[Route('/api/posts', name: 'app_post', methods: ["POST"])]
+    #[Route('/api/posts', name: 'app_post_create', methods: ["POST"])]
     public function create(
         Request $request,
         SerializerInterface $serializer,
