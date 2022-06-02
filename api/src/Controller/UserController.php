@@ -3,22 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class UserController extends AbstractController
 {
     #[Route('/api/register', name: 'app_user_register')]
     public function register(
-        Request $request,
-        EntityManagerInterface $manager,
+        Request                     $request,
+        EntityManagerInterface      $manager,
         UserPasswordHasherInterface $hasher,
-        SerializerInterface $serializer,
+        SerializerInterface         $serializer,
     ): JsonResponse
     {
         $user = new User();
@@ -28,5 +31,17 @@ class UserController extends AbstractController
         $manager->persist($user);
         $manager->flush();
         return $this->json($serializer->serialize($user, 'json', ['groups' => ['user']]));
+    }
+
+    #[Route('/api/user', name: 'app_user_show', methods: ["GET"])]
+    public function show(
+        TokenStorageInterface    $tokenStorageInterface,
+        JWTTokenManagerInterface $jwtManager,
+        SerializerInterface      $serializer,
+        UserRepository           $userRepository,
+    )
+    {
+        $jwt = $jwtManager->decode($tokenStorageInterface->getToken());
+        return ($this->json($serializer->serialize($userRepository->findOneByEmail($jwt["email"]), 'json', ['groups' => ['user']])));
     }
 }
