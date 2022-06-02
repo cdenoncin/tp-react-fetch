@@ -5,15 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Factory\PostFactory;
 use App\Factory\UserFactory;
-use App\Repository\PostRepository;
-use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-
     public function __construct(UserPasswordHasherInterface $hasher)
     {
         $this->hasher = $hasher;

@@ -19,6 +19,8 @@ services:
   db:
     image: 'mariadb'
     restart: always
+    volumes:
+      - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
 
@@ -30,3 +32,7 @@ services:
       - '8080:80'
     environment:
       - PMA_ARBITRARY=1
+
+
+volumes:
+  db-data:
