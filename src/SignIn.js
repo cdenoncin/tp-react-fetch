@@ -1,9 +1,9 @@
 import './App.css';
 import CreateForm from './components/CreateForm';
 
-function SignIn() {
+function SignIn(props) {
     return (
-        <CreateForm title="Sign In" submit="login" link="Register instead ?">
+        <CreateForm title="Sign In" submit="login" link="Register instead ?" linkFn={props.clickLink}>
             <div className="app-form-group">
                 <input className="app-form-control" placeholder="USERNAME"/>
             </div>
