@@ -13,7 +13,7 @@ function CreateForm(props) {
                         <button className="app-link" onClick={props.linkFn}> {props.link}</button>
                     </div>
                     <div className="screen-body-item">
-                        <form className="app-form">
+                        <form onSubmit={props.submitFn} className="app-form">
 
                             {props.children}
 
