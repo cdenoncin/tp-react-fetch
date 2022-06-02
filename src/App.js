@@ -2,7 +2,8 @@ import './App.css';
 import axios from 'axios';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import React from 'react';
+import React, { PureComponent } from 'react';
+
 
 class App extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
 
     toggle() {
         this.setState({signUp: !this.state.signUp});
+       
     }
 
     showSignUp() {
