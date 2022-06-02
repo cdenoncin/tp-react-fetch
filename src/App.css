@@ -183,17 +183,28 @@ nav > .nav-buttons > button.active {
   border-bottom: 1px solid #666666;
   color: #dddddd;
   font-size: 14px;
-  text-transform: uppercase;
+  outline: none;
+  transition: border-color .2s;
+}
+.app-textarea-control {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 10px 0 10px 5px;
+  border-bottom: 1px solid #666666;
+  border-left: 1px solid #666666;
+  color: #dddddd;
+  font-size: 14px;
   outline: none;
   transition: border-color .2s;
 }
 
-.app-form-control::placeholder {
+.app-form-control::placeholder, .app-textarea-control::placeholder {
   color: #666666;
 }
 
-.app-form-control:focus {
-  border-bottom-color: #dddddd;
+.app-form-control:focus, .app-textarea-control:focus {
+  border-color: #dddddd;
 }
 
 .app-form-button {

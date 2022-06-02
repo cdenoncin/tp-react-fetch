@@ -1,8 +1,9 @@
 import './App.css';
 import axios from 'axios';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import React, { PureComponent } from 'react';
+import CreatePost from './CreatePost';
 
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
         this.state = {
             signUp: false,
         };
+        this.getUser = this.getUser.bind(this);
         this.toggle = this.toggle.bind(this);
         this.showSignUp = this.showSignUp.bind(this);
         this.hideSignUp = this.hideSignUp.bind(this);
@@ -18,7 +20,7 @@ class App extends React.Component {
 
     toggle() {
         this.setState({signUp: !this.state.signUp});
-       
+
     }
 
     showSignUp() {
@@ -29,13 +31,17 @@ class App extends React.Component {
         this.setState({signUp : false});
     }
 
+    getUser(){
+        console.log(sessionStorage.getItem('user'));
+    }
+
     render() {
         const show = (this.state.signUp) ? 'show' : '';
 
         return (
             <div className="App">
                 <nav>
-                    <h1>Website</h1>
+                    <h1 onClick={this.getUser}>Website</h1>
                     <div className="nav-buttons">
                         <button onClick={this.showSignUp} className={show ? 'active' : ''}>Already an account?</button>
                         <button onClick={this.hideSignUp} className={show ? '' : 'active'}>Register Instead?</button>
@@ -50,6 +56,7 @@ class App extends React.Component {
                         <SignUp clickLink={this.showSignUp}/>
                     </section>
                 </div>
+                <CreatePost/>
             </div>
         );
     }

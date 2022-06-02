@@ -1,7 +1,7 @@
-import './App.css';
-import CreateForm from './components/CreateForm';
+import '../App.css';
+import CreateForm from './CreateForm';
 import React from 'react';
-import query from './api/axios'
+import query from '../api/axios'
 
 
 
@@ -20,7 +20,7 @@ class SignUp extends React.Component {
   }
   register(e) {
     e.preventDefault();
-    
+
     this.query.post('/register', {
       username: this.state.username,
       email: this.state.email,
