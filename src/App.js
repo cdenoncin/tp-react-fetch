@@ -42,10 +42,10 @@ class App extends React.Component {
                 </nav>
                 <div className="d-flex">
                     <section className={show ? 'd-flex' : 'd-none'}>
-                        <SignIn/>
+                        <SignIn clickLink={this.hideSignUp}/>
                     </section>
                     <section className={show ? 'd-none' : 'd-flex'}>
-                        <SignUp/>
+                        <SignUp clickLink={this.showSignUp}/>
                     </section>
                 </div>
             </div>

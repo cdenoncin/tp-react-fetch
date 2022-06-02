@@ -10,7 +10,7 @@ function CreateForm(props) {
                         <div className="app-title">
                             <span>{props.title}</span>
                         </div>
-                        <button className="app-link"> {props.link}</button>
+                        <button className="app-link" onClick={props.linkFn}> {props.link}</button>
                     </div>
                     <div className="screen-body-item">
                         <form className="app-form">
