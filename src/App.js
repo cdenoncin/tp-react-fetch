@@ -4,6 +4,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import React, { PureComponent } from 'react';
 import CreatePost from './CreatePost';
+import PostList from './PostList'
 
 
 class App extends React.Component {
@@ -57,6 +58,7 @@ class App extends React.Component {
                     </section>
                 </div>
                 <CreatePost/>
+                <PostList/>
             </div>
         );
     }

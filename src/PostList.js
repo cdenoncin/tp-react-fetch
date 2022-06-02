@@ -1,5 +1,6 @@
 import './App.css';
 import SinglePost from './SinglePost';
+import query from './api/axios';
 
 function PostList() {
   return (
