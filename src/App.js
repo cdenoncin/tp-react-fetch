@@ -38,8 +38,6 @@ class App extends React.Component {
         const show = (this.state.signUp) ? 'show' : '';
         const user = sessionStorage.getItem('user') | null;
 
-
-        // @todo var globally user
         return (
             <div className="App">
                 <nav>
@@ -58,10 +56,7 @@ class App extends React.Component {
                         <SignUp clickLink={this.showSignUp}/>
                     </section>
                 </div>
-                <div>
-                    {user ? <CreatePost/> : null}
-                </div>
-
+                 <CreatePost/>
                 <PostList/>
             </div>
         );
