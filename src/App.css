@@ -240,12 +240,23 @@ nav > .nav-buttons > button.active {
   text-decoration: none;
 }
 
-.dribbble {
-  width: 20px;
-  height: 20px;
-  margin: 0 5px;
+.post-body {
+  padding: 50px;
+  flex-direction: column;
 }
-
+.post-content {
+  color: white;
+  margin-top: 2rem;
+}
+.color-white {
+  color: white;
+}
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+.mb-5{
+  margin-bottom: 3rem;
+}
 @media screen and (max-width: 520px) {
   .screen-body {
     flex-direction: column;

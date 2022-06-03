@@ -1,5 +1,4 @@
 import './App.css';
-import axios from 'axios';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import React, { PureComponent } from 'react';
@@ -21,7 +20,6 @@ class App extends React.Component {
 
     toggle() {
         this.setState({signUp: !this.state.signUp});
-
     }
 
     showSignUp() {
@@ -38,7 +36,10 @@ class App extends React.Component {
 
     render() {
         const show = (this.state.signUp) ? 'show' : '';
+        const user = sessionStorage.getItem('user') | null;
 
+
+        // @todo var globally user
         return (
             <div className="App">
                 <nav>
@@ -57,7 +58,10 @@ class App extends React.Component {
                         <SignUp clickLink={this.showSignUp}/>
                     </section>
                 </div>
-                <CreatePost/>
+                <div>
+                    {user ? <CreatePost/> : null}
+                </div>
+
                 <PostList/>
             </div>
         );
